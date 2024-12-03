@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwhvw0svvld8i"]
+[gd_scene load_steps=7 format=3 uid="uid://bwhvw0svvld8i"]
 
 [ext_resource type="Script" path="res://features/gui/scripts/settings_button.gd" id="1_ie0bk"]
-[ext_resource type="PackedScene" uid="uid://bb4vfxs05lyb" path="res://features/demo/scenes/teste.tscn" id="2_wnt1s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8ar4"]
 content_margin_left = 24.0
@@ -101,6 +100,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_6nnu1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8sd1j")
 text = "Configurar"
 script = ExtResource("1_ie0bk")
-target_scene = ExtResource("2_wnt1s")
+target_scene = "res://features/demo/scenes/teste.tscn"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
