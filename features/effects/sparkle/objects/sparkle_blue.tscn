@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dadps50ku0gsp"]
+[gd_scene load_steps=7 format=3 uid="uid://o2be2uyow7x8"]
 
-[ext_resource type="Texture2D" uid="uid://cddbwdp4ummca" path="res://features/effects/sparkle/sprites/sparkle-white.png" id="1_b0k38"]
-[ext_resource type="Script" path="res://features/effects/sparkle/scripts/sparkle.gd" id="1_uuhq3"]
+[ext_resource type="Script" path="res://features/effects/sparkle/scripts/sparkle.gd" id="1_8u8f7"]
+[ext_resource type="Texture2D" uid="uid://cddbwdp4ummca" path="res://features/effects/sparkle/sprites/sparkle-white.png" id="2_66swt"]
+[ext_resource type="Texture2D" uid="uid://btnikhhrw87j2" path="res://features/effects/sparkle/sprites/sparkle-blue.png" id="2_487tt"]
 
 [sub_resource type="Animation" id="Animation_8g5sp"]
 length = 0.001
@@ -27,7 +28,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_b0k38")]
+"values": [ExtResource("2_487tt")]
 }
 
 [sub_resource type="Animation" id="Animation_uab5a"]
@@ -44,7 +45,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_b0k38")]
+"values": [ExtResource("2_66swt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -65,11 +66,11 @@ _data = {
 "idle": SubResource("Animation_uab5a")
 }
 
-[node name="sparkle_white" type="Node2D"]
-script = ExtResource("1_uuhq3")
+[node name="sparkle_blue" type="Node2D"]
+script = ExtResource("1_8u8f7")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_b0k38")
+texture = ExtResource("2_487tt")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
