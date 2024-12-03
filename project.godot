@@ -17,4 +17,5 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AutoloadManager="*res://features/autoload/scripts/autoload_manager.gd"
+ScoreManager="*res://features/autoload/scripts/score_manager.gd"
+StartMenuManager="*res://features/autoload/scripts/start_menu_manager.gd"

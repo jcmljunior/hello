@@ -7,7 +7,7 @@ func _ready() -> void:
 	# Busca as informações da pontuação atual durante a inicialização.
 	_on_score_changed()
 	
-	AutoloadManager.connect("on_score_changed", _on_score_changed)
+	ScoreManager.connect("on_score_changed", _on_score_changed)
 
 func _on_button_pressed() -> void:
 	if not back_scene or not back_scene.can_instantiate():
@@ -17,10 +17,10 @@ func _on_button_pressed() -> void:
 
 
 func _on_score_button_pressed() -> void:
-	AutoloadManager.add_score()
+	ScoreManager.add_score()
 
 func _on_decrement_button_pressed() -> void:
-	AutoloadManager.remove_score()
+	ScoreManager.remove_score()
 
 func _on_score_changed() -> void:
-	label.text = str(AutoloadManager.get_score())
+	label.text = str(ScoreManager.get_score())

@@ -5,7 +5,7 @@ extends CoreButton
 @export_file("*.tscn") var target_scene: String
 
 func _ready() -> void:
-		var current_selected := AutoloadManager.get_current_selected()
+		var current_selected := StartMenuManager.get_current_selected()
 		if current_selected == get_parent().get_children().find(self):
 			grab_focus()
 
@@ -17,4 +17,4 @@ func _on_pressed() -> void:
 	get_tree().change_scene_to_file(target_scene)
 
 func update_current_selected() -> void:
-	AutoloadManager.set_current_selected(get_parent().get_children().find(self))
+	StartMenuManager.set_current_selected(get_parent().get_children().find(self))
