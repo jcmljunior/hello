@@ -1,3 +1,4 @@
+class_name CoreButton
 extends Button
 
 @export var focus := false
