@@ -4,6 +4,9 @@ extends Control
 @onready var label: Label = %Label
 
 func _ready() -> void:
+	# Busca as informações da pontuação atual durante a inicialização.
+	_on_score_changed()
+	
 	AutoloadManager.connect("on_score_changed", _on_score_changed)
 
 func _on_button_pressed() -> void:
