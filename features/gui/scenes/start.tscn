@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://bmwakh4qavj55"]
+[gd_scene load_steps=4 format=3 uid="uid://bmwakh4qavj55"]
+
+[ext_resource type="PackedScene" uid="uid://b2el6n2wox3o3" path="res://features/gui/objects/play_button.tscn" id="1_vi03e"]
+[ext_resource type="PackedScene" uid="uid://bwhvw0svvld8i" path="res://features/gui/objects/settings_button.tscn" id="3_aul0g"]
+[ext_resource type="PackedScene" uid="uid://dy8tbg5xt33cq" path="res://features/gui/objects/quit_button.tscn" id="4_tcbah"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -53,7 +57,7 @@ alignment = 2
 [node name="Label" type="Label" parent="MarginContainer/BoxContainer/MarginContainer/BoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Editar"
+text = "Sokoban"
 
 [node name="BoxContainer" type="BoxContainer" parent="MarginContainer/BoxContainer"]
 layout_mode = 2
@@ -73,17 +77,14 @@ alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2/VBoxContainer"]
+[node name="PlayButton" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2/VBoxContainer" instance=ExtResource("1_vi03e")]
 layout_mode = 2
-text = "Editar"
 
-[node name="Button2" type="Button" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2/VBoxContainer"]
+[node name="SettingsButton" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2/VBoxContainer" instance=ExtResource("3_aul0g")]
 layout_mode = 2
-text = "Editar"
 
-[node name="Button3" type="Button" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2/VBoxContainer"]
+[node name="QuitButton" parent="MarginContainer/BoxContainer/BoxContainer/MarginContainer2/BoxContainer2/VBoxContainer" instance=ExtResource("4_tcbah")]
 layout_mode = 2
-text = "Editar"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/BoxContainer"]
 layout_mode = 2
