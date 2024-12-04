@@ -3,6 +3,9 @@ class_name State extends Node
 @onready var player: CharacterBody2D = owner
 @onready var state_machine: StateMachine = get_parent()
 
+@export_group("Modo de Execução")
+@export var one_shot := false
+
 
 func _ready() -> void:
 	if not state_machine:

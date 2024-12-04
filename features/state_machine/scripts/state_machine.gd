@@ -63,7 +63,14 @@ func _previous_state_handler() -> void:
 		return
 		
 	get_previous_state().exit_state()
+	_one_shot_handler()
 
+
+func _one_shot_handler() -> void:
+	if not get_previous_state().one_shot:
+		return
+	
+	remove_child(get_previous_state())
 
 func _change_state_handler(state: Node) -> void:
 	if get_current_state() == state:
