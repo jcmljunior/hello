@@ -1,5 +1,7 @@
 class_name StateMachine extends Node
 
+signal on_current_state_changed
+
 @export var _auto_start := true
 
 var _current_state: Node : set=set_current_state, get=get_current_state
@@ -21,6 +23,7 @@ func set_current_state(state: Node) -> void:
 		return
 	
 	_current_state = state
+	emit_signal("on_current_state_changed")
 
 func get_current_state() -> Node:
 	return _current_state
