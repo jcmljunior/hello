@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 ScoreManager="*res://singletons/scripts/score_manager.gd"
-StartMenuManager="*res://singletons/scripts/start_menu_manager.gd"
 
 [layer_names]
 
