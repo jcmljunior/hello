@@ -92,7 +92,7 @@ _data = {
 "idle": SubResource("Animation_v1jmy")
 }
 
-[node name="apple" type="Area2D"]
+[node name="apple" type="Area2D" groups=["fruits"]]
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_wd8jl")
@@ -117,4 +117,9 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="item_visibility" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-8, -8, 16, 16)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_entered" from="item_visibility" to="." method="_on_item_visibility_screen_entered"]
+[connection signal="screen_exited" from="item_visibility" to="." method="_on_item_visibility_screen_exited"]
