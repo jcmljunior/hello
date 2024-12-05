@@ -9,7 +9,7 @@ func set_score(new_score: int) -> void:
 		return
 	
 	score = new_score
-	emit_signal("on_score_changed")
+	on_score_changed.emit()
 
 func get_score() -> int:
 	return score
