@@ -56,3 +56,15 @@ func _on_body_entered(_body: CharacterBody2D) -> void:
 	# Aguarda a animação terminar para continuar.
 	# Importante para o processo de finalização do objeto ocorrer na ordem correta.
 	await node.get_node("animation").animation_finished
+
+
+func _on_item_visibility_screen_entered() -> void:
+	set_monitoring(true)
+	set_process(true)
+	set_physics_process(true)
+
+
+func _on_item_visibility_screen_exited() -> void:
+	set_monitoring(false)
+	set_process(false)
+	set_physics_process(false)
