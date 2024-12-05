@@ -7,6 +7,7 @@ extends Area2D
 @onready var spawn : Marker2D = %spawn
 @onready var animation: AnimationPlayer = %animation
 @onready var collision: CollisionPolygon2D = %collision
+@onready var collectable: AudioStreamPlayer2D = %collectable
 
 func _ready() -> void:
 	ScoreManager.connect("on_score_changed", _on_score_changed)
@@ -22,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 	set_monitorable.call_deferred(false)
 	sprite.set_visible.call_deferred(false)
 	collision.set_disabled.call_deferred(true)
+	collectable.play()
 	ScoreManager.add_score()
 	
 	await _spawn_effect(load(fx))

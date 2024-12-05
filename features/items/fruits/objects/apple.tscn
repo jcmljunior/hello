@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsvjog68qsoso"]
+[gd_scene load_steps=7 format=3 uid="uid://dsvjog68qsoso"]
 
 [ext_resource type="Texture2D" uid="uid://bb5q1ukm4wt86" path="res://features/items/fruits/sprites/apple.png" id="1_7rtjf"]
 [ext_resource type="Script" path="res://features/items/fruits/scripts/fruits.gd" id="1_wd8jl"]
+[ext_resource type="AudioStream" uid="uid://cknjjdp70bjke" path="res://features/sound/collectable.wav" id="2_8olre"]
 
 [sub_resource type="Animation" id="Animation_fl131"]
 length = 0.001
@@ -94,6 +95,10 @@ _data = {
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_wd8jl")
+
+[node name="collectable" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_8olre")
 
 [node name="collision" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
