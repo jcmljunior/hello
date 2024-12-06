@@ -15,4 +15,9 @@ func _on_score_changed() -> void:
 	score_label.text = str(ScoreManager.get_score())
 
 func _on_current_state_changed() -> void:
-	state_label.text = state_machine.get_current_state().name
+	var current_state = state_machine.get_current_state()
+	
+	if not current_state:
+		return
+	
+	state_label.text = current_state.name
