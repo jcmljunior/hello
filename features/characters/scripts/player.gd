@@ -23,26 +23,12 @@ func _process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("ui_left", "ui_right")
 	
+	#print()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	#if not can_moviment and velocity.y == 0:
-		#_change_state_handler("spawn")
-	#
-	#elif Input.is_action_just_pressed("ui_accept") and velocity.y <= 0 and can_moviment:
-		#_change_state_handler("jump")
-		#
-	#elif direction and is_on_floor() and can_moviment:
-		#_change_state_handler("run")
-	#
-	#elif not direction and is_on_floor() and can_moviment:
-		#_change_state_handler("idle")
-	#
-	#elif velocity.y >= 0 :
-		#_change_state_handler("land")
-		
-		
+
 	move_and_slide()
 
 
