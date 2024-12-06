@@ -2,7 +2,7 @@ class_name StateMachine extends Node
 
 signal on_current_state_changed
 
-@export var _auto_start := true
+@export var _auto_start := true : set=set_auto_start, get=get_auto_start
 
 var _current_state: Node : set=set_current_state, get=get_current_state
 var _previous_state: Node : set=set_previous_state, get=get_previous_state
