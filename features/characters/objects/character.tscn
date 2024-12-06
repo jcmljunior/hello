@@ -1,4 +1,4 @@
-[gd_scene load_steps=201 format=3 uid="uid://c1nk8i8q2a5cp"]
+[gd_scene load_steps=204 format=3 uid="uid://c1nk8i8q2a5cp"]
 
 [ext_resource type="Texture2D" uid="uid://76g6epwba8el" path="res://features/characters/sprites/player_spawn.png" id="1_knleb"]
 [ext_resource type="Script" path="res://features/characters/scripts/player.gd" id="1_lg6un"]
@@ -7,13 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://lfc8trddlvpx" path="res://features/characters/sprites/player_idle.png" id="2_eyg6n"]
 [ext_resource type="PackedScene" uid="uid://cj30ch86p3hro" path="res://features/state_machine/objects/state.tscn" id="3_m2cct"]
 [ext_resource type="Texture2D" uid="uid://dbmrufpqsoltx" path="res://features/characters/sprites/player_hurt.png" id="3_snopy"]
+[ext_resource type="Script" path="res://features/characters/scripts/character_state_machine.gd" id="3_vcix8"]
 [ext_resource type="Script" path="res://features/characters/scripts/idle.gd" id="4_4etjd"]
+[ext_resource type="Script" path="res://features/characters/scripts/spawn.gd" id="4_pum61"]
 [ext_resource type="Script" path="res://features/characters/scripts/run.gd" id="5_qqjk0"]
 [ext_resource type="Texture2D" uid="uid://nxugkkpeqvnh" path="res://features/characters/sprites/player_jump.png" id="5_xb6c2"]
 [ext_resource type="Script" path="res://features/characters/scripts/jump.gd" id="6_7u164"]
 [ext_resource type="Texture2D" uid="uid://p6ssfptvo2a8" path="res://features/characters/sprites/player_land.png" id="6_v76xa"]
 [ext_resource type="Texture2D" uid="uid://bnshk7qh7u00s" path="res://features/characters/sprites/player_run.png" id="7_1yjly"]
 [ext_resource type="Script" path="res://features/characters/scripts/hud.gd" id="7_fomkx"]
+[ext_resource type="Script" path="res://features/characters/scripts/character_state.gd" id="8_8bq1o"]
 [ext_resource type="Texture2D" uid="uid://cyc7q0cdndht7" path="res://features/characters/sprites/player_victory.png" id="9_4fhk7"]
 [ext_resource type="AudioStream" uid="uid://d0c3cvw2wo401" path="res://features/sound/jump.wav" id="10_igtfd"]
 [ext_resource type="AudioStream" uid="uid://be0fcs3v13gqf" path="res://features/sound/death.wav" id="12_40uu5"]
@@ -952,7 +955,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 37.0
+"speed": 38.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1104,7 +1107,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 48.0
+"speed": 49.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1124,7 +1127,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"land",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1216,7 +1219,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 28.0
+"speed": 29.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1281,7 +1284,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"spawn",
-"speed": 19.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1325,7 +1328,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"victory",
-"speed": 12.0
+"speed": 13.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40bjf"]
@@ -1336,8 +1339,11 @@ collision_mask = 30
 script = ExtResource("1_lg6un")
 
 [node name="state_machine" parent="." instance=ExtResource("2_dtniw")]
+script = ExtResource("3_vcix8")
+_auto_start = false
 
 [node name="spawn" parent="state_machine" instance=ExtResource("3_m2cct")]
+script = ExtResource("4_pum61")
 
 [node name="idle" parent="state_machine" instance=ExtResource("3_m2cct")]
 script = ExtResource("4_4etjd")
@@ -1347,6 +1353,9 @@ script = ExtResource("5_qqjk0")
 
 [node name="jump" parent="state_machine" instance=ExtResource("3_m2cct")]
 script = ExtResource("6_7u164")
+
+[node name="land" parent="state_machine" instance=ExtResource("3_m2cct")]
+script = ExtResource("8_8bq1o")
 
 [node name="character_hud" type="CanvasLayer" parent="."]
 script = ExtResource("7_fomkx")
@@ -1420,17 +1429,16 @@ uppercase = true
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "0"
+text = "undefined"
 
 [node name="timer_spawn" type="Timer" parent="."]
+unique_name_in_owner = true
 one_shot = true
-autostart = true
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_qmgir")
 animation = &"spawn"
-autoplay = "spawn"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 11.5)
@@ -1447,3 +1455,5 @@ stream = ExtResource("12_40uu5")
 
 [node name="death" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_40uu5")
+
+[connection signal="timeout" from="timer_spawn" to="." method="_on_timer_spawn_timeout"]

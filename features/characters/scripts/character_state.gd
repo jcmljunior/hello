@@ -5,7 +5,6 @@ class_name CharacterState extends State
 func enter_state() -> void:
 	super.enter_state()
 	_player_animation_handler()
-	_player_sprite_direction_handler()
 
 
 func _player_animation_handler() -> void:
@@ -13,7 +12,4 @@ func _player_animation_handler() -> void:
 
 
 func _player_sprite_direction_handler() -> void:
-	if state_machine.get_current_state().name == "idle":
-		return
-	
 	sprite.flip_h = player.direction < 0

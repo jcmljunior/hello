@@ -13,6 +13,8 @@ extends CharacterBody2D
 
 var direction: int
 
+var can_moviment := false
+
 func _change_state_handler(state: String) -> void:
 	state_machine._change_state_handler(state_machine.get_node(state))
 
@@ -25,13 +27,24 @@ func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		_change_state_handler("jump")
+	#if not can_moviment and velocity.y == 0:
+		#_change_state_handler("spawn")
+	#
+	#elif Input.is_action_just_pressed("ui_accept") and velocity.y <= 0 and can_moviment:
+		#_change_state_handler("jump")
+		#
+	#elif direction and is_on_floor() and can_moviment:
+		#_change_state_handler("run")
+	#
+	#elif not direction and is_on_floor() and can_moviment:
+		#_change_state_handler("idle")
+	#
+	#elif velocity.y >= 0 :
+		#_change_state_handler("land")
 		
-	elif direction and is_on_floor():
-		_change_state_handler("run")
-	
-	elif not direction and is_on_floor():
-		_change_state_handler("idle")
 		
 	move_and_slide()
+
+
+func _on_timer_spawn_timeout() -> void:
+	can_moviment = true
