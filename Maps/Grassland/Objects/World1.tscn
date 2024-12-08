@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://brjcsc47swvqr"]
+
+[ext_resource type="PackedScene" uid="uid://qax6s3v5o4ud" path="res://Characters/Objects/Character.tscn" id="1_mkyt5"]
+[ext_resource type="PackedScene" uid="uid://u87t1bnr6sde" path="res://Maps/Grassland/Objects/Grassland.tscn" id="2_e3wx8"]
+[ext_resource type="PackedScene" uid="uid://cu6we3oitmfws" path="res://Enemies/Mushroom/Objects/Mushroom.tscn" id="2_fq785"]
+
+[node name="World1" type="Node2D"]
+
+[node name="Character" parent="." instance=ExtResource("1_mkyt5")]
+position = Vector2(128, 80)
+
+[node name="Grassland" parent="." instance=ExtResource("2_e3wx8")]
+
+[node name="Mushroom2" type="Node" parent="."]
+
+[node name="Mushroom" parent="Mushroom2" instance=ExtResource("2_fq785")]
+position = Vector2(464, 128)
+
+[node name="Patrol" parent="Mushroom2/Mushroom/StateMachine" index="2" node_paths=PackedStringArray("patrol_points")]
+patrol_points = [NodePath("../../../Marker2D"), NodePath("../../../Marker2D2")]
+
+[node name="Marker2D" type="Marker2D" parent="Mushroom2"]
+z_index = -1
+position = Vector2(192, 176)
+
+[node name="ColorRect" type="ColorRect" parent="Mushroom2/Marker2D"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0, 0.698284, 0.308502, 1)
+
+[node name="Marker2D2" type="Marker2D" parent="Mushroom2"]
+z_index = -1
+position = Vector2(496, 176)
+
+[node name="ColorRect2" type="ColorRect" parent="Mushroom2/Marker2D2"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0, 0.698284, 0.308502, 1)
+
+[editable path="Mushroom2/Mushroom"]

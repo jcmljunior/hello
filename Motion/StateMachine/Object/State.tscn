@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj5hrf1d73vih"]
+
+[ext_resource type="Script" path="res://Motion/StateMachine/Scripts/State.gd" id="1_xx1oa"]
+
+[node name="State" type="Node"]
+script = ExtResource("1_xx1oa")
