@@ -7,6 +7,18 @@ class_name MushroomStateMachine extends StateMachine
 func _change_state(state: String) -> void:
 	_change_state_handler(get_node_or_null(state))
 
+func _has_idle_handler() -> bool:
+	if not ground_sensor.is_colliding():
+		return false
+		
+	if not get_node("Patrol").is_waiting:
+		return false
+	
+	if mushroom.velocity:
+		return false
+	
+	return true
+
 func _has_fall_handler() -> bool:
 	if ground_sensor.is_colliding():
 		return false
@@ -25,6 +37,9 @@ func _has_patrol_handler() -> bool:
 		
 	if not get_node("Patrol").patrol_points.size():
 		return false
+		
+	if get_node("Patrol").is_waiting:
+		return false
 	
 	return true
 
@@ -33,6 +48,9 @@ func _has_chasing_handler() -> bool:
 		return false
 	
 	if not player_sensor.is_colliding():
+		return false
+		
+	if get_node("Patrol").is_waiting:
 		return false
 	
 	return true
@@ -61,3 +79,6 @@ func _process(delta: float) -> void:
 		
 	elif _has_chasing_handler():
 		_change_state("Chasing")
+		
+	elif _has_idle_handler():
+		_change_state("Idle")
