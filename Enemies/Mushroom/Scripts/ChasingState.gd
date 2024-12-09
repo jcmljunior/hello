@@ -12,8 +12,5 @@ func _process(_delta: float) -> void:
 	_flipped_collision_handler()
 
 func _physics_process(_delta: float) -> void:
-	if not owner.get("player"):
-		return
-	
 	mushroom.velocity = (owner.get("player").global_position - mushroom.global_position).normalized() * move_speed
 	mushroom.move_and_slide()

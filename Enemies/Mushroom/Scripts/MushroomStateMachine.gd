@@ -22,6 +22,9 @@ func _has_patrol_handler() -> bool:
 		
 	if player_sensor.is_colliding():
 		return false
+		
+	if not get_node("Patrol").patrol_points.size():
+		return false
 	
 	return true
 

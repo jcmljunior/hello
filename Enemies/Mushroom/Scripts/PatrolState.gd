@@ -14,9 +14,6 @@ func _process(_delta: float) -> void:
 	_flipped_collision_handler()
 
 func _physics_process(_delta: float) -> void:	
-	if not patrol_points.size():
-		return
-		
 	var target := patrol_points[index].position
 	
 	mushroom.velocity = (target - mushroom.position).normalized() * move_speed
