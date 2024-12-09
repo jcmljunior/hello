@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cu6we3oitmfws"]
+[gd_scene load_steps=15 format=3 uid="uid://cu6we3oitmfws"]
 
 [ext_resource type="Script" path="res://Enemies/Mushroom/Scripts/Mushroom.gd" id="1_mnbn1"]
 [ext_resource type="Texture2D" uid="uid://bnmv0fxglomd2" path="res://Enemies/Mushroom/Sprites/MushroomIdle.png" id="1_p08u8"]
@@ -182,9 +182,6 @@ _data = {
 "Run": SubResource("Animation_uhlvv")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_om1ye"]
-size = Vector2(100, 5)
-
 [node name="Mushroom" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 11
@@ -221,21 +218,20 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, 6)
-rotation = 1.5708
-enabled = false
-target_position = Vector2(0, 13)
-collision_mask = 3
-
-[node name="RayCast2D2" type="RayCast2D" parent="."]
+[node name="GroundSensor" type="RayCast2D" parent="."]
 target_position = Vector2(0, 20)
 collision_mask = 8
 hit_from_inside = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerSensor" type="RayCast2D" parent="."]
+position = Vector2(-75, 5)
+target_position = Vector2(150, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_om1ye")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea"]
+build_mode = 1
+polygon = PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4)

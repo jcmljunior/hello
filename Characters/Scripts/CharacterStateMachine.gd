@@ -1,11 +1,7 @@
 class_name CharacterStateMachine extends StateMachine
 
 @onready var player: CharacterBody2D = owner
-
-# Utilizado para detectar se o jogador esta ou não no chão.
-# Devido a variações de tamanho na forma colisora do personagem, há variações de posicionamento
-# Que podem indicar que o jogador saiu da superficie mesmo ele estando lá.
-@onready var ray_cast_2d: RayCast2D = owner.get_node_or_null("RayCast2D")
+@onready var ground_sensor: RayCast2D = owner.get_node_or_null("GroundSensor")
 
 var input_direction
 
@@ -17,7 +13,7 @@ func _has_fall_handler() -> bool:
 	if player.velocity.y < 0:
 		return false
 		
-	if ray_cast_2d.is_colliding():
+	if ground_sensor.is_colliding():
 		return false
 	
 	return true
@@ -26,7 +22,7 @@ func _has_idle_handler() -> bool:
 	if input_direction:
 		return false
 		
-	if not ray_cast_2d.is_colliding():
+	if not ground_sensor.is_colliding():
 		return false
 		
 	if Input.is_action_pressed("jump"):
@@ -38,7 +34,7 @@ func _has_run_handler() -> bool:
 	if not input_direction:
 		return false
 		
-	if not ray_cast_2d.is_colliding():
+	if not ground_sensor.is_colliding():
 		return false
 		
 	if Input.is_action_pressed("jump"):
@@ -54,7 +50,7 @@ func _has_jump_handler() -> bool:
 	if player.velocity.y > 0:
 		return false
 		
-	if not ray_cast_2d.is_colliding():
+	if not ground_sensor.is_colliding():
 		return false
 	
 	return true

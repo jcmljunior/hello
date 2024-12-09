@@ -3,7 +3,6 @@ extends MushroomState
 @export var patrol_points: Array[Marker2D] = []
 var move_speed := 30.0
 var index := 0
-var is_waiting := false
 
 func _enter_state() -> void:
 	super._enter_state()
