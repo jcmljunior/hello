@@ -1,0 +1,57 @@
+[gd_resource type="Shader" format=3 uid="uid://bo3cbiqt4cblw"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform float screen_width = 1920;
+uniform float screen_height = 1080;
+uniform vec2 center = vec2(0.5f);
+uniform vec2 player = vec2(0.5f);
+
+uniform float progress : hint_range(0, 1);
+uniform float pixel_size = 15.0f;
+uniform float circle_size : hint_range(0, 2) = 1.5f;
+uniform float curtains : hint_range(0, 1) = 1.0f;
+
+uniform int type : hint_range(0, 4) = 0;
+
+bool is_diamond_pixel(vec2 frag_coord, vec2 uv) {
+    float xFraction = fract(frag_coord.x / pixel_size);
+    float yFraction = fract(frag_coord.y / pixel_size);
+    float xDistance = abs(xFraction - 0.5);
+    float yDistance = abs(yFraction - 0.5);
+    return (xDistance + yDistance + uv.x + uv.y) > progress * 4.0f;
+}
+
+bool is_circle_player(vec2 uv) {
+    float ratio = screen_width / screen_height;
+    return distance(player, vec2(mix(player.x, uv.x, ratio), uv.y)) < circle_size * (1.0 - progress);
+}
+
+bool is_circle_center(vec2 uv) {
+    float ratio = screen_width / screen_height;
+    return distance(center, vec2(mix(center.x, uv.x, ratio), uv.y)) < circle_size * (1.0 - progress);
+}
+
+bool is_vertical_cut(vec2 uv) {
+    return distance(vec2(0.5, 0.5), vec2(uv.x, uv.x)) < curtains * (1.0 - progress);
+}
+
+bool is_horizontal_cut(vec2 uv) {
+    return distance(vec2(0.5, 0.5), vec2(uv.y, uv.y)) < curtains * (1.0 - progress);
+}
+
+void fragment() {
+    if (type == 0 && is_diamond_pixel(FRAGCOORD.xy, UV)) {
+        discard;
+    } else if (type == 1 && is_circle_player(UV)) {
+        COLOR.a = 0.0f;
+    } else if (type == 2 && is_circle_center(UV)) {
+        COLOR.a = 0.0f;
+    } else if (type == 3 && is_vertical_cut(UV)) {
+        COLOR.a = 0.0f;
+    } else if (type == 4 && is_horizontal_cut(UV)) {
+        COLOR.a = 0.0f;
+    }
+}
+"
