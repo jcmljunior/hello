@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://cclgp5lh5g27l"]
+
+[ext_resource type="Texture2D" uid="uid://b1tqlurdgdiwq" path="res://Effects/ParticleDissolve/Sprites/DissolveEffect.png" id="1_wkoie"]
+[ext_resource type="PackedScene" uid="uid://dd3msna3abrjj" path="res://Motion/StateMachine/Object/StateMachine.tscn" id="2_qfn8o"]
+[ext_resource type="Script" path="res://Effects/ParticleDissolve/Scripts/DissolveStateMachine.gd" id="2_tr4y0"]
+[ext_resource type="Script" path="res://Effects/ParticleDissolve/Scripts/DissolveState.gd" id="3_a54gg"]
+[ext_resource type="PackedScene" uid="uid://bj5hrf1d73vih" path="res://Motion/StateMachine/Object/State.tscn" id="3_nkv0o"]
+[ext_resource type="Script" path="res://Effects/ParticleDissolve/Scripts/ClearMemoryState.gd" id="4_up4y0"]
+
+[node name="DissolveEffect" type="Node"]
+
+[node name="StateMachine" parent="." instance=ExtResource("2_qfn8o")]
+script = ExtResource("2_tr4y0")
+
+[node name="Dissolve" parent="StateMachine" instance=ExtResource("3_nkv0o")]
+script = ExtResource("3_a54gg")
+
+[node name="ClearMemory" parent="StateMachine" instance=ExtResource("3_nkv0o")]
+script = ExtResource("4_up4y0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("1_wkoie")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
