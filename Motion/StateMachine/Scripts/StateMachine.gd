@@ -68,7 +68,7 @@ func _change_state_handler(state: State) -> void:
 		
 		# Elimina da arvore de objetos, o estado de execução unica.
 		# Após a transição do estado ocorrer.
-		if get_previous_state().get("_one_shot"):
+		if get_previous_state().get("_one_shot") and not _auto_start:
 			await get_tree().process_frame
 			await get_tree().physics_frame
 		
@@ -80,7 +80,7 @@ func _change_state_handler(state: State) -> void:
 	
 	# Elimina da arvore de objetos, o estado de execução unica.
 	# Sem a transição de estado ocorrer.
-	if get_current_state().get("_one_shot"):
+	if get_current_state().get("_one_shot") && _auto_start:
 		await get_tree().process_frame
 		await get_tree().physics_frame
 		
