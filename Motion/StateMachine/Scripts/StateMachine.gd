@@ -67,12 +67,29 @@ func _change_state_handler(state: State) -> void:
 		get_previous_state()._exit_state()
 		
 		# Elimina da arvore de objetos, o estado de execução unica.
+		# Após a transição do estado ocorrer.
 		if get_previous_state().get("_one_shot"):
+			await get_tree().process_frame
+			await get_tree().physics_frame
+		
 			remove_child(get_previous_state())
 	
 	# Inicialização do ciclo de repetição do estado atual.
 	# Essencial para manter a execução do laço de execução process, physic_process etc...
 	get_current_state()._enter_state()
 	
+	# Elimina da arvore de objetos, o estado de execução unica.
+	# Sem a transição de estado ocorrer.
+	if get_current_state().get("_one_shot"):
+		await get_tree().process_frame
+		await get_tree().physics_frame
+		
+		# Finaliza o estado atual.
+		get_current_state()._exit_state()
+		
+		# Elimina o estado atual da arvore de objetos após a execução unica ocorrer.
+		remove_child(get_current_state())
+		return
+
 	# Define o estado anterior.
 	set_previous_state(state)
