@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxg4hifv5i6y1"]
+[gd_scene load_steps=12 format=3 uid="uid://bxg4hifv5i6y1"]
 
 [ext_resource type="Script" path="res://Motion/NodeTransition/Scripts/NodeTransition.gd" id="1_q184u"]
 [ext_resource type="Shader" uid="uid://bo3cbiqt4cblw" path="res://Motion/NodeTransition/Shader/NodeTransition.tres" id="1_u72vq"]
+[ext_resource type="PackedScene" uid="uid://dd3msna3abrjj" path="res://Motion/StateMachine/Object/StateMachine.tscn" id="2_8lt6w"]
+[ext_resource type="PackedScene" uid="uid://bj5hrf1d73vih" path="res://Motion/StateMachine/Object/State.tscn" id="3_px2fn"]
+[ext_resource type="Script" path="res://Motion/NodeTransition/Scripts/Backward.gd" id="4_mepyq"]
+[ext_resource type="Script" path="res://Motion/NodeTransition/Scripts/Forward.gd" id="5_u0stq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0luw5"]
 shader = ExtResource("1_u72vq")
@@ -13,7 +17,7 @@ shader_parameter/progress = 0.0
 shader_parameter/pixel_size = 15.0
 shader_parameter/circle_size = 1.5
 shader_parameter/curtains = 1.0
-shader_parameter/type = 3
+shader_parameter/type = 0
 
 [sub_resource type="Animation" id="Animation_v4d1y"]
 length = 0.001
@@ -73,6 +77,17 @@ _data = {
 layer = 2
 visible = false
 script = ExtResource("1_q184u")
+
+[node name="StateMachine" parent="." instance=ExtResource("2_8lt6w")]
+_auto_start = true
+
+[node name="Backward" parent="StateMachine" instance=ExtResource("3_px2fn")]
+script = ExtResource("4_mepyq")
+_one_shot = true
+
+[node name="Forward" parent="StateMachine" instance=ExtResource("3_px2fn")]
+script = ExtResource("5_u0stq")
+_one_shot = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
