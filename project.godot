@@ -15,11 +15,20 @@ run/main_scene="res://Maps/Grassland/Objects/World1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ScoreManager="*res://Motion/Singletons/ScoreManager/Scripts/ScoreManager.gd"
+
 [display]
 
 window/size/viewport_width=1368
 window/size/viewport_height=768
 window/stretch/scale=2.0
+
+[global_group]
+
+Enemy="Referência aos inimigos do jogo."
+Player="Referência aos jogadores."
 
 [gui]
 
@@ -57,3 +66,5 @@ jump={
 2d_physics/layer_3="Item"
 2d_physics/layer_4="World"
 2d_physics/layer_5="Platform"
+2d_physics/layer_6="Hitbox"
+2d_physics/layer_7="Hurtbox"
