@@ -7,8 +7,6 @@ func _enter_state() -> void:
 	
 	player.velocity.y = jump_force
 
-func _process(_delta: float) -> void:
-	_character_apply_gravity_handler()
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	_apply_gravity_handler()
 	player.move_and_slide()

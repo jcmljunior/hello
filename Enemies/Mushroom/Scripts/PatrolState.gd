@@ -10,11 +10,13 @@ func _enter_state() -> void:
 	_animation_handler("Run")
 
 func _process(_delta: float) -> void:
-	_apply_gravity_handler()
 	_flipped_sprite_handler()
 	_flipped_collision_handler()
+	_flipped_detection_area_handler()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	_apply_gravity_handler()
+	
 	var target := patrol_points[index].position
 	
 	if is_waiting:
