@@ -4,8 +4,6 @@ class_name MushroomStateMachine extends StateMachine
 @onready var ground_sensor : RayCast2D = get_parent().get_node_or_null("GroundSensor")
 @onready var player_sensor : RayCast2D = get_parent().get_node_or_null("PlayerSensor")
 
-func _change_state(state: String) -> void:
-	_change_state_handler(get_node_or_null(state))
 
 func _has_idle_handler() -> bool:
 	# Não pode ficar ocioso se não estiver aguardando.
@@ -16,6 +14,14 @@ func _has_idle_handler() -> bool:
 	if not ground_sensor.is_colliding():
 		return false
 	
+	# Não pode ficar ocioso, se o jogador estiver na área de detecção.
+	if mushroom.get("player"):
+		return false
+		
+	#if get_previous_state().name == "Chasing" and get_node("Patrol").is_waiting:
+		#get_node("Idle")._reset_timer_handler()
+		#return false
+
 	
 	return true
 
@@ -38,6 +44,7 @@ func _has_patrol_handler() -> bool:
 	
 	# Não pode patrulhar se o jogador estiver na área de detecção.
 	if player_sensor.is_colliding():
+		mushroom.set("player", player_sensor.get_collider())
 		return false
 	
 	# Não pode patrulhar sem pontos de destino.
@@ -46,6 +53,10 @@ func _has_patrol_handler() -> bool:
 	
 	# Não pode patrulhar se estiver ocioso.
 	if get_node("Patrol").is_waiting:
+		return false
+	
+	# Não pode patrulhar com uma referência do jogador.
+	if mushroom.get("player"):
 		return false
 		
 	
@@ -58,32 +69,27 @@ func _has_chasing_handler() -> bool:
 	
 	# Não pode perseguir o jogador se ele não estiver na área de detecção.
 	if not player_sensor.is_colliding():
+		# Elimina a referência do jogador para finalizar o estado de perseguição.
+		mushroom.set("player", null)
+		
 		return false
 	
+	# Não pode perseguir o jogador sem sua referência.
+	if not mushroom.get("player"):
+		return false
+
 	
 	return true
 
-func _player_collider_handler() -> void:
-	if not player_sensor.get_collider():
-		mushroom.set("player", null)
-		return
-		
-	if not player_sensor.get_collider() is CharacterBody2D:
-		return
-		
-	mushroom.set("player", player_sensor.get_collider())
-
 func _process(delta: float) -> void:
-	_player_collider_handler()
-	
 	if _has_fall_handler():
-		_change_state("Fall")
+		_change_state_handler(get_node_or_null("Fall"))
 	
 	elif _has_patrol_handler():
-		_change_state("Patrol")
+		_change_state_handler(get_node_or_null("Patrol"))
 		
 	elif _has_chasing_handler():
-		_change_state("Chasing")
+		_change_state_handler(get_node_or_null("Chasing"))
 		
 	elif _has_idle_handler():
-		_change_state("Idle")
+		_change_state_handler(get_node_or_null("Idle"))
