@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cu6we3oitmfws"]
+[gd_scene load_steps=19 format=3 uid="uid://cu6we3oitmfws"]
 
 [ext_resource type="Script" path="res://Enemies/Mushroom/Scripts/Mushroom.gd" id="1_mnbn1"]
 [ext_resource type="Texture2D" uid="uid://bnmv0fxglomd2" path="res://Enemies/Mushroom/Sprites/MushroomIdle.png" id="1_p08u8"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://Enemies/Mushroom/Scripts/IdleState.gd" id="3_8khyr"]
 [ext_resource type="Script" path="res://Enemies/Mushroom/Scripts/FallState.gd" id="3_y4vvn"]
 [ext_resource type="Script" path="res://Enemies/Mushroom/Scripts/ChasingState.gd" id="5_7v1fc"]
+[ext_resource type="Script" path="res://Enemies/Mushroom/Scripts/HitState.gd" id="7_cbrir"]
+[ext_resource type="PackedScene" uid="uid://04mptuykoa6w" path="res://Motion/Hitbox/Objects/HitBox.tscn" id="11_yn36p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sqk0"]
+size = Vector2(16, 3)
 
 [sub_resource type="Animation" id="Animation_el7bv"]
 resource_name = "Hit"
@@ -50,6 +55,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [PackedVector2Array(-6, -1, -6, 0, -9, 0, -9, 1, -11, 1, -11, 2, -12, 2, -12, 3, -13, 3, -13, 5, -14, 5, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 5, 13, 5, 13, 3, 12, 3, 12, 2, 11, 2, 11, 1, 9, 1, 9, 0, 6, 0, 6, -1), PackedVector2Array(-6, -1, -6, 0, -9, 0, -9, 1, -11, 1, -11, 2, -12, 2, -12, 3, -13, 3, -13, 5, -14, 5, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 5, 13, 5, 13, 3, 12, 3, 12, 2, 11, 2, 11, 1, 9, 1, 9, 0, 6, 0, 6, -1), PackedVector2Array(-9, -1, -11, -1, -11, 0, -12, 0, -12, 1, -13, 1, -13, 3, -14, 3, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 3, 13, 3, 13, 1, 12, 1, 12, 0, 11, 0, 11, -1, 9, -1, 9, -2, -9, -2), PackedVector2Array(-8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, -8, -3), PackedVector2Array(-8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4, -8, -4)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_3sqk0")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox/CollisionShape2D:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(12, 3), Vector2(12, 3), Vector2(18, 3), Vector2(16, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0.5), Vector2(0, 0.5), Vector2(0, 0.5), Vector2(0, -1.5), Vector2(0, -2.5)]
+}
 
 [sub_resource type="Animation" id="Animation_2lu70"]
 resource_name = "Idle"
@@ -84,13 +125,49 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("CollisionPolygon2D:polygon")
-tracks/2/interp = 1
+tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4), PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4), PackedVector2Array(-5, -3, -8, -3, -8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, 5, -3, 5, -4, -5, -4), PackedVector2Array(-5, -3, -8, -3, -8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, 5, -3, 5, -4, -5, -4), PackedVector2Array(-6, -2, -9, -2, -9, -1, -11, -1, -11, 0, -12, 0, -12, 1, -13, 1, -13, 3, -14, 3, -14, 7, -13, 7, -13, 9, -12, 9, -12, 10, -11, 10, -11, 11, -9, 11, -9, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 9, 12, 9, 11, 11, 11, 11, 10, 12, 10, 12, 9, 13, 9, 13, 7, 14, 7, 14, 3, 13, 3, 13, 1, 12, 1, 12, 0, 11, 0, 11, -1, 9, -1, 9, -2, 6, -2, 6, -3, -6, -3), PackedVector2Array(-6, 0, -9, 0, -9, 1, -11, 1, -11, 2, -12, 2, -12, 3, -13, 3, -13, 5, -14, 5, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 5, 13, 5, 13, 3, 12, 3, 12, 2, 11, 2, 11, 1, 9, 1, 9, 0, 6, 0, 6, -1, -6, -1), PackedVector2Array(-6, 0, -9, 0, -9, 1, -11, 1, -11, 2, -12, 2, -12, 3, -13, 3, -13, 5, -14, 5, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 5, 13, 5, 13, 3, 12, 3, 12, 2, 11, 2, 11, 1, 9, 1, 9, 0, 6, 0, 6, -1, -6, -1), PackedVector2Array(-9, -1, -11, -1, -11, 0, -12, 0, -12, 1, -13, 1, -13, 3, -14, 3, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 3, 13, 3, 13, 1, 12, 1, 12, 0, 11, 0, 11, -1, 9, -1, 9, -2, -9, -2), PackedVector2Array(-8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, -8, -3), PackedVector2Array(-8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, -8, -3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_3sqk0")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox/CollisionShape2D:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(16, 3), Vector2(16, 3), Vector2(10, 3), Vector2(10, 3), Vector2(12, 3), Vector2(12, 3), Vector2(18, 3), Vector2(16, 3), Vector2(16, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -2.5), Vector2(0, -2.5), Vector2(0, -1.5), Vector2(0, 0.5), Vector2(0, 0.5), Vector2(0, -0.5), Vector2(0, -1.5), Vector2(0, -1.5)]
 }
 
 [sub_resource type="Animation" id="Animation_e4a8d"]
@@ -130,6 +207,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_3sqk0")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox/CollisionShape2D:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_uhlvv"]
@@ -173,6 +286,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [PackedVector2Array(-8, -2, -8, -1, -10, -1, -10, 0, -11, 0, -11, 1, -12, 1, -12, 3, -13, 3, -13, 7, -12, 7, -12, 9, -11, 9, -11, 10, -10, 10, -10, 11, -8, 11, -8, 12, -7, 12, -7, 14, -6, 14, -6, 15, -3, 15, -3, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 11, 10, 11, 10, 10, 11, 10, 11, 9, 12, 9, 12, 7, 13, 7, 13, 3, 12, 3, 12, 1, 11, 1, 11, 0, 10, 0, 10, -1, 8, -1, 8, -2), PackedVector2Array(-8, -4, -10, -4, -10, -3, -11, -3, -11, -2, -12, -2, -12, 0, -13, 0, -13, 4, -12, 4, -12, 6, -11, 6, -11, 7, -10, 7, -10, 8, -8, 8, -8, 11, -7, 11, -7, 13, -6, 13, -6, 14, -4, 14, -4, 13, 3, 13, 3, 14, 4, 14, 4, 15, 6, 15, 6, 14, 7, 14, 7, 11, 8, 11, 8, 8, 10, 8, 10, 7, 11, 7, 11, 6, 12, 6, 12, 4, 13, 4, 13, 0, 12, 0, 12, -2, 11, -2, 11, -3, 10, -3, 10, -4, 8, -4, 8, -5, -8, -5), PackedVector2Array(-8, -4, -10, -4, -10, -3, -11, -3, -11, -2, -12, -2, -12, 0, -13, 0, -13, 4, -12, 4, -12, 6, -11, 6, -11, 7, -10, 7, -10, 8, -8, 8, -8, 11, -7, 11, -7, 13, -6, 13, -6, 14, -4, 14, -4, 13, 3, 13, 3, 14, 4, 14, 4, 15, 6, 15, 6, 14, 7, 14, 7, 11, 8, 11, 8, 8, 10, 8, 10, 7, 11, 7, 11, 6, 12, 6, 12, 4, 13, 4, 13, 0, 12, 0, 12, -2, 11, -2, 11, -3, 10, -3, 10, -4, 8, -4, 8, -5, -8, -5), PackedVector2Array(-6, -4, -8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 14, -6, 14, -6, 15, -4, 15, -4, 14, -3, 14, -3, 13, 3, 13, 3, 14, 4, 14, 4, 15, 6, 15, 6, 14, 7, 14, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4, 6, -4, 6, -5, -6, -5), PackedVector2Array(-6, -3, -8, -3, -8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 13, -7, 13, -7, 15, -6, 15, -6, 16, -4, 16, -4, 15, -3, 15, -3, 14, 3, 14, 3, 15, 4, 15, 4, 16, 6, 16, 6, 15, 7, 15, 7, 13, 8, 13, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, 6, -3, 6, -4, -6, -4), PackedVector2Array(-9, 0, -11, 0, -11, 1, -12, 1, -12, 2, -13, 2, -13, 4, -14, 4, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 4, 13, 4, 13, 2, 12, 2, 12, 1, 11, 1, 11, 0, 9, 0, 9, -1, -9, -1), PackedVector2Array(-9, 0, -11, 0, -11, 1, -12, 1, -12, 2, -13, 2, -13, 4, -14, 4, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 4, 13, 4, 13, 2, 12, 2, 12, 1, 11, 1, 11, 0, 9, 0, 9, -1, -9, -1), PackedVector2Array(-8, -1, -10, -1, -10, 0, -11, 0, -11, 1, -12, 1, -12, 3, -13, 3, -13, 7, -12, 7, -12, 9, -11, 9, -11, 10, -10, 10, -10, 11, -8, 11, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 3, 14, 3, 15, 5, 15, 5, 14, 6, 14, 6, 13, 7, 13, 7, 12, 8, 12, 8, 11, 10, 11, 10, 10, 11, 10, 11, 9, 12, 9, 12, 7, 13, 7, 13, 3, 12, 3, 12, 1, 11, 1, 11, 0, 10, 0, 10, -1, 8, -1, 8, -2, -8, -2), PackedVector2Array(-8, -4, -10, -4, -10, -3, -11, -3, -11, -2, -12, -2, -12, 0, -13, 0, -13, 4, -12, 4, -12, 6, -11, 6, -11, 7, -10, 7, -10, 8, -8, 8, -8, 11, -7, 11, -7, 12, -6, 12, -6, 13, -5, 13, -5, 14, -4, 14, -4, 15, -2, 15, -2, 14, -1, 14, -1, 13, 2, 13, 2, 14, 4, 14, 4, 13, 5, 13, 5, 12, 7, 12, 7, 11, 8, 11, 8, 8, 10, 8, 10, 7, 11, 7, 11, 6, 12, 6, 12, 4, 13, 4, 13, 0, 12, 0, 12, -2, 11, -2, 11, -3, 10, -3, 10, -4, 8, -4, 8, -5, -8, -5), PackedVector2Array(-8, -4, -10, -4, -10, -3, -11, -3, -11, -2, -12, -2, -12, 0, -13, 0, -13, 4, -12, 4, -12, 6, -11, 6, -11, 7, -10, 7, -10, 8, -8, 8, -8, 11, -7, 11, -7, 12, -6, 12, -6, 13, -5, 13, -5, 14, -4, 14, -4, 15, -2, 15, -2, 14, -1, 14, -1, 13, 2, 13, 2, 14, 4, 14, 4, 13, 5, 13, 5, 12, 7, 12, 7, 11, 8, 11, 8, 8, 10, 8, 10, 7, 11, 7, 11, 6, 12, 6, 12, 4, 13, 4, 13, 0, 12, 0, 12, -2, 11, -2, 11, -3, 10, -3, 10, -4, 8, -4, 8, -5, -8, -5), PackedVector2Array(-6, -4, -8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 11, -7, 11, -7, 12, -6, 12, -6, 13, -5, 13, -5, 14, -4, 14, -4, 15, -2, 15, -2, 14, -1, 14, -1, 13, 1, 13, 1, 14, 2, 14, 2, 15, 4, 15, 4, 14, 5, 14, 5, 13, 6, 13, 6, 12, 7, 12, 7, 11, 8, 11, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4, 6, -4, 6, -5, -6, -5), PackedVector2Array(-6, -3, -8, -3, -8, -2, -10, -2, -10, -1, -11, -1, -11, 0, -12, 0, -12, 2, -13, 2, -13, 6, -12, 6, -12, 8, -11, 8, -11, 9, -10, 9, -10, 10, -8, 10, -8, 12, -7, 12, -7, 13, -6, 13, -6, 14, -5, 14, -5, 15, -4, 15, -4, 16, -2, 16, -2, 15, -1, 15, -1, 14, 1, 14, 1, 15, 2, 15, 2, 16, 4, 16, 4, 15, 5, 15, 5, 14, 6, 14, 6, 13, 7, 13, 7, 12, 8, 12, 8, 10, 10, 10, 10, 9, 11, 9, 11, 8, 12, 8, 12, 6, 13, 6, 13, 2, 12, 2, 12, 0, 11, 0, 11, -1, 10, -1, 10, -2, 8, -2, 8, -3, 6, -3, 6, -4, -6, -4), PackedVector2Array(-9, 0, -11, 0, -11, 1, -12, 1, -12, 2, -13, 2, -13, 4, -14, 4, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 4, 13, 4, 13, 2, 12, 2, 12, 1, 11, 1, 11, 0, 9, 0, 9, -1, -9, -1), PackedVector2Array(-9, 0, -11, 0, -11, 1, -12, 1, -12, 2, -13, 2, -13, 4, -14, 4, -14, 8, -13, 8, -13, 10, -12, 10, -12, 11, -11, 11, -11, 12, -8, 12, -8, 13, -7, 13, -7, 14, -6, 14, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 14, 7, 14, 7, 13, 8, 13, 8, 12, 11, 12, 11, 11, 12, 11, 12, 10, 13, 10, 13, 8, 14, 8, 14, 4, 13, 4, 13, 2, 12, 2, 12, 1, 11, 1, 11, 0, 9, 0, 9, -1, -9, -1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_3sqk0")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitBox/CollisionShape2D:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.4001, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(16, 3), Vector2(16, 3), Vector2(12, 3), Vector2(12, 3), Vector2(12, 3), Vector2(18, 3), Vector2(18, 3), Vector2(16, 3), Vector2(16, 3), Vector2(16, 3), Vector2(12, 3), Vector2(12, 3), Vector2(18, 3), Vector2(18, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -0.5), Vector2(0, -3.5), Vector2(0, -3.5), Vector2(0, -2.5), Vector2(0, 0.5), Vector2(0, 0.5), Vector2(0, -0.5), Vector2(0, -3.5), Vector2(0, -3.5), Vector2(0, -3.5), Vector2(0, -2.5), Vector2(0, 0.5), Vector2(0, 0.5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e3ss4"]
 _data = {
@@ -182,9 +331,17 @@ _data = {
 "Run": SubResource("Animation_uhlvv")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkshx"]
+size = Vector2(2, 2)
+
 [node name="Mushroom" type="CharacterBody2D"]
+process_priority = 1
+process_physics_priority = 1
+process_thread_group = 1
+process_thread_group_order = 1
+process_thread_messages = 3
 collision_layer = 2
-collision_mask = 11
+collision_mask = 9
 script = ExtResource("1_mnbn1")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -202,15 +359,13 @@ script = ExtResource("2_ur32k")
 [node name="Chasing" type="Node" parent="StateMachine"]
 script = ExtResource("5_7v1fc")
 
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("7_cbrir")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_p08u8")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-show_behind_parent = true
-build_mode = 1
-polygon = PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -218,20 +373,27 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="GroundSensor" type="RayCast2D" parent="."]
-target_position = Vector2(0, 20)
-collision_mask = 8
-hit_from_inside = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_wkshx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+show_behind_parent = true
+polygon = PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4)
 
 [node name="PlayerSensor" type="RayCast2D" parent="."]
 position = Vector2(-75, 5)
 target_position = Vector2(150, 0)
 collide_with_areas = true
-collide_with_bodies = false
 
-[node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 2
+[node name="GroundSensor" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16.5)
+collision_mask = 8
+hit_from_inside = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionArea"]
-build_mode = 1
-polygon = PackedVector2Array(-8, -4, -8, -3, -10, -3, -10, -2, -11, -2, -11, -1, -12, -1, -12, 1, -13, 1, -13, 5, -12, 5, -12, 7, -11, 7, -11, 8, -10, 8, -10, 9, -8, 9, -8, 12, -7, 12, -7, 13, -6, 13, -6, 15, -5, 15, -5, 16, -3, 16, -3, 15, -2, 15, -2, 14, 2, 14, 2, 15, 3, 15, 3, 16, 5, 16, 5, 15, 6, 15, 6, 13, 7, 13, 7, 12, 8, 12, 8, 9, 10, 9, 10, 8, 11, 8, 11, 7, 12, 7, 12, 5, 13, 5, 13, 1, 12, 1, 12, -1, 11, -1, 11, -2, 10, -2, 10, -3, 8, -3, 8, -4)
+[node name="HitBox" parent="." instance=ExtResource("11_yn36p")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_3sqk0")
+debug_color = Color(0.431373, 0.458824, 1, 0.505882)

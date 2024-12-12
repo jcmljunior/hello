@@ -7,6 +7,7 @@ func _apply_gravity_handler() -> void:
 	if mushroom.is_on_floor():
 		return
 	
+	
 	mushroom.velocity += mushroom.get_gravity() * mushroom.get_process_delta_time()
 
 
@@ -16,6 +17,7 @@ func _animation_handler(animation_name: String) -> void:
 	if not animation:
 		return
 	
+	
 	animation.play(animation_name)
 
 func _flipped_sprite_handler() -> void:
@@ -23,12 +25,13 @@ func _flipped_sprite_handler() -> void:
 	
 	if not sprite:
 		return
-		
+	
+	
 	sprite.set_flip_h(mushroom.velocity.x > 0)
 
 
 func _flipped_collision_handler() -> void:
-	var collision : CollisionPolygon2D = owner.get_node_or_null("CollisionPolygon2D")
+	var collision : CollisionPolygon2D = mushroom.get_node_or_null("CollisionPolygon2D")
 	
 	if not collision:
 		return
@@ -38,3 +41,15 @@ func _flipped_collision_handler() -> void:
 		
 	if mushroom.velocity.x > 0:
 		collision.set_scale(Vector2(1, 1))
+
+func _flipped_detection_area_handler() -> void:
+	var detection_area : Area2D = mushroom.get_node_or_null("DetectionArea")
+	
+	if not detection_area:
+		return
+	
+	if mushroom.velocity.x < 0:
+		detection_area.set_scale(Vector2(-1, 1))
+		
+	if mushroom.velocity.x > 0:
+		detection_area.set_scale(Vector2(1, 1))

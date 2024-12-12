@@ -4,15 +4,15 @@ class_name CharacterState extends State
 
 func _enter_state() -> void:
 	super._enter_state()
-	_character_animation_handler()
+	_animation_handler()
 
-func _character_apply_gravity_handler() -> void:
+func _apply_gravity_handler() -> void:
 	if player.is_on_floor():
 		return
 	
 	player.velocity += player.get_gravity() * player.get_process_delta_time()
 
-func _character_animation_handler() -> void:
+func _animation_handler() -> void:
 	var animation: AnimationPlayer = player.get_node_or_null("AnimationPlayer")
 	
 	if not animation:

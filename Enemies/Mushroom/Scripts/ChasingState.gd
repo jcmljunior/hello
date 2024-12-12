@@ -10,6 +10,7 @@ func _process(_delta: float) -> void:
 	_apply_gravity_handler()
 	_flipped_sprite_handler()
 	_flipped_collision_handler()
+	_flipped_detection_area_handler()
 
 func _physics_process(_delta: float) -> void:
 	mushroom.velocity = (owner.get("player").global_position - mushroom.global_position).normalized() * move_speed

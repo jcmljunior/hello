@@ -8,50 +8,65 @@ func _change_state(state: String) -> void:
 	_change_state_handler(get_node_or_null(state))
 
 func _has_idle_handler() -> bool:
-	if not ground_sensor.is_colliding():
-		return false
-		
+	# Não pode ficar ocioso se não estiver aguardando.
 	if not get_node("Patrol").is_waiting:
 		return false
 	
+	# Não pode ficar ocioso sem superficie.
+	if not ground_sensor.is_colliding():
+		return false
+	
+	# Não pode ficar ocioso se estiver se movimentando.
 	if mushroom.velocity:
 		return false
+	
 	
 	return true
 
 func _has_fall_handler() -> bool:
+	# Não pode cair se já estiver no chão.
 	if ground_sensor.is_colliding():
 		return false
 	
+	# Não pode cair se estiver subindo durante o pulo.
 	if mushroom.velocity.y > 0:
 		return false
+	
 	
 	return true
 
 func _has_patrol_handler() -> bool:
+	# Não pode patrulhar se o inimigo não estiver na superficie.
 	if not ground_sensor.is_colliding():
 		return false
-		
+	
+	# Não pode patrulhar se o jogador estiver na área de detecção.
 	if player_sensor.is_colliding():
 		return false
-		
+	
+	# Não pode patrulhar sem pontos de destino.
 	if not get_node("Patrol").patrol_points.size():
 		return false
-		
+	
+	# Não pode patrulhar se estiver ocioso.
 	if get_node("Patrol").is_waiting:
 		return false
+	
 	
 	return true
 
 func _has_chasing_handler() -> bool:
+	#if get_node("Patrol").is_waiting:
+		#return false
+	
+	# Não pode perseguir o jogador se ele não estiver ao chão.
 	if not ground_sensor.is_colliding():
 		return false
 	
+	# Não pode perseguir o jogador se ele não estiver na área de detecção.
 	if not player_sensor.is_colliding():
 		return false
-		
-	if get_node("Patrol").is_waiting:
-		return false
+	
 	
 	return true
 
@@ -60,13 +75,10 @@ func _player_collider_handler() -> void:
 		mushroom.set("player", null)
 		return
 		
-	if not player_sensor.get_collider() is Area2D:
+	if not player_sensor.get_collider() is CharacterBody2D:
 		return
 		
-	if not player_sensor.get_collider().get_parent() is CharacterBody2D:
-		return
-		
-	mushroom.set("player", player_sensor.get_collider().get_parent())
+	mushroom.set("player", player_sensor.get_collider())
 
 func _process(delta: float) -> void:
 	_player_collider_handler()
