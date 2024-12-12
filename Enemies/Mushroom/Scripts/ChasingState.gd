@@ -10,8 +10,8 @@ func _process(_delta: float) -> void:
 	_apply_gravity_handler()
 	_flipped_sprite_handler()
 	_flipped_collision_handler()
-	_flipped_detection_area_handler()
 
 func _physics_process(_delta: float) -> void:
-	mushroom.velocity = (owner.get("player").global_position - mushroom.global_position).normalized() * move_speed
+	var direction : Vector2 = (mushroom.get("player").global_position - mushroom.global_position).normalized()
+	mushroom.velocity = Vector2(direction.x * move_speed, mushroom.velocity.y).normalized() * move_speed
 	mushroom.move_and_slide()
