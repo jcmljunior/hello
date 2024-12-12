@@ -16,10 +16,6 @@ func _has_idle_handler() -> bool:
 	if not ground_sensor.is_colliding():
 		return false
 	
-	# Não pode ficar ocioso se estiver se movimentando.
-	if mushroom.velocity:
-		return false
-	
 	
 	return true
 
@@ -51,14 +47,11 @@ func _has_patrol_handler() -> bool:
 	# Não pode patrulhar se estiver ocioso.
 	if get_node("Patrol").is_waiting:
 		return false
-	
+		
 	
 	return true
 
 func _has_chasing_handler() -> bool:
-	#if get_node("Patrol").is_waiting:
-		#return false
-	
 	# Não pode perseguir o jogador se ele não estiver ao chão.
 	if not ground_sensor.is_colliding():
 		return false

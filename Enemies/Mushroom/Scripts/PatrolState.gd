@@ -17,10 +17,8 @@ func _physics_process(delta: float) -> void:
 	_apply_gravity_handler()
 	
 	var target := patrol_points[index].position
-	
-	if is_waiting:
-		mushroom.velocity = Vector2.ZERO
-	else:
+		
+	if not is_waiting:
 		mushroom.velocity = (target - mushroom.position).normalized() * move_speed
 	
 	if mushroom.position.distance_to(target) < 10.0:
