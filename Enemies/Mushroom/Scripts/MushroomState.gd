@@ -41,15 +41,3 @@ func _flipped_collision_handler() -> void:
 		
 	if mushroom.velocity.x > 0:
 		collision.set_scale(Vector2(1, 1))
-
-func _flipped_detection_area_handler() -> void:
-	var detection_area : Area2D = mushroom.get_node_or_null("DetectionArea")
-	
-	if not detection_area:
-		return
-	
-	if mushroom.velocity.x < 0:
-		detection_area.set_scale(Vector2(-1, 1))
-		
-	if mushroom.velocity.x > 0:
-		detection_area.set_scale(Vector2(1, 1))
