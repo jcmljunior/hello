@@ -22,8 +22,7 @@ func _physics_process(delta: float) -> void:
 	
 	if mushroom.position.distance_to(target) < 10.0:
 		index += 1
-		get_parent().is_waiting = true
-		#get_parent().is_waiting = [true, false, false].pick_random()
+		get_parent().is_waiting = [true, false, false].pick_random()
 		
 		if index >= patrol_points.size():
 			index = 0
