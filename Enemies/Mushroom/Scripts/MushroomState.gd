@@ -7,7 +7,6 @@ func _apply_gravity_handler() -> void:
 	if mushroom.is_on_floor():
 		return
 	
-	
 	mushroom.velocity += mushroom.get_gravity() * mushroom.get_process_delta_time()
 
 
@@ -17,7 +16,6 @@ func _animation_handler(animation_name: String) -> void:
 	if not animation:
 		return
 	
-	
 	animation.play(animation_name)
 
 func _flipped_sprite_handler() -> void:
@@ -25,7 +23,6 @@ func _flipped_sprite_handler() -> void:
 	
 	if not sprite:
 		return
-	
 	
 	sprite.set_flip_h(mushroom.velocity.x > 0)
 

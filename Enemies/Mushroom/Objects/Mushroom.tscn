@@ -371,7 +371,6 @@ region_rect = Rect2(0, 0, 32, 32)
 libraries = {
 "": SubResource("AnimationLibrary_e3ss4")
 }
-autoplay = "Idle"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 rect = Rect2(-16, -16, 32, 32)
