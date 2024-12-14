@@ -1,7 +1,7 @@
 class_name StateMachine extends Node
 
 signal current_state_changed(current_state: State)
-signal previous_state_changed(current_state: State)
+signal previous_state_changed(previous_state: State)
 
 var _current_state : State : set=set_current_state, get=get_current_state
 var _previous_state : State : set=set_previous_state, get=get_previous_state
