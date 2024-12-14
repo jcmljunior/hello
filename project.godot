@@ -13,17 +13,25 @@ config_version=5
 config/name="Hello"
 run/main_scene="res://Maps/Grassland/Objects/World1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 ScoreManager="*res://Motion/Singletons/ScoreManager/Scripts/ScoreManager.gd"
+Output="*res://Motion/Singletons/Output/Objects/Output.tscn"
 
 [display]
 
-window/size/viewport_width=1368
-window/size/viewport_height=768
-window/stretch/scale=2.0
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+mouse_cursor/custom_image="res://Motion/Cursor/Sprites/cursor_none.png"
+mouse_cursor/custom_image_hotspot=Vector2(8, 8)
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [global_group]
 
@@ -56,6 +64,11 @@ jump={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+mouse_left={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(327, 11),"global_position":Vector2(336, 57),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 
